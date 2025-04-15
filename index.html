@@ -1,0 +1,757 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>
+   Baisics | Ozons Picks
+  </title>
+<style>
+   * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      font-family: 'Arial', sans-serif;
+      background-color: #fff;
+      color: #1a1a1a;
+    }
+    header {
+      background: #fff;
+      border-bottom: 2px solid #8b0000;
+      padding: 15px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+    .logo {
+      font-size: 22px;
+      font-weight: bold;
+      color: #8b0000;
+    }
+    nav a {
+      margin-left: 15px;
+      text-decoration: none;
+      color: #8b0000;
+      font-weight: bold;
+    }
+    .cart-icon {
+      cursor: pointer;
+      font-size: 20px;
+      color: #000;
+    }
+    section {
+      padding: 30px 20px;
+    }
+    h2.section-title {
+      font-size: 24px;
+      margin-bottom: 20px;
+      color: #8b0000;
+    }
+    .product-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 16px;
+    }
+    @media(min-width: 768px) {
+      .product-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+    .product-card {
+      background: #fdfdfd;
+      border-radius: 10px;
+      overflow: hidden;
+      border: 1px solid #ccc;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+      display: flex;
+      flex-direction: column;
+    }
+    .product-card img {
+      width: 100%;
+      height: auto;
+      object-fit: cover;
+    }
+    .product-info {
+      padding: 10px;
+      font-size: 14px;
+      text-align: center;
+    }
+    .product-title {
+      font-weight: bold;
+      margin-bottom: 5px;
+      color: #333;
+    }
+    .product-price {
+      color: #a20000;
+      margin-bottom: 8px;
+      font-weight: bold;
+    }
+    select, button {
+      margin: 5px 0;
+      padding: 5px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+    button {
+      background-color: #8b0000;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #a20000;
+    }
+    .faq, .policy, .reviews, .contact {
+      margin-top: 40px;
+    }
+    .faq p, .policy p, .reviews p {
+      margin-bottom: 10px;
+    }
+    .policy p span {
+      display: block;
+      margin-top: 5px;
+      font-weight: normal;
+    }
+    .contact a {
+      color: #8b0000;
+      text-decoration: underline;
+      display: block;
+      margin-bottom: 5px;
+    }
+  
+.nav-links {
+  background-color: #8b0000;
+  padding: 5px 0;
+  text-align: center;
+}
+.nav-links a {
+  color: #fff !important;
+  font-weight: bold;
+}
+</style>
+<script>
+   function switchImage(id, newSrc, clickedEl) {
+    document.getElementById(id).src = newSrc;
+    const siblings = clickedEl.parentNode.querySelectorAll('img');
+    siblings.forEach(img => img.style.border = "2px solid transparent");
+    clickedEl.style.border = "2px solid #8b0000";
+  }
+  
+let cartCount = 0;
+function addToCart(button) {
+  const product = button.closest('.product');
+  const name = product.querySelector('h3') ? product.querySelector('h3').innerText : 'Item';
+  const size = product.querySelector('select') ? product.querySelector('select').value : '';
+  const quantity = product.querySelector('input[type=number]') ? parseInt(product.querySelector('input[type=number]').value) : 1;
+  cartCount += quantity;
+  document.getElementById('cart-count').innerText = cartCount;
+  alert(`Added to cart:\n${name}\nSize: ${size}\nQuantity: ${quantity}`);
+}
+
+let cartItems = [];
+
+function addToCart(button) {
+  const product = button.closest('.product');
+  const name = product.querySelector('h3') ? product.querySelector('h3').innerText : 'Item';
+  const size = product.querySelector('select') ? product.querySelector('select').value : '';
+  const quantity = product.querySelector('input[type=number]') ? parseInt(product.querySelector('input[type=number]').value) : 1;
+
+  cartItems.push({ name, size, quantity });
+
+  let cartCount = cartItems.reduce((sum, item) => sum + item.quantity, 0);
+  document.getElementById('cart-count').innerText = cartCount;
+
+  alert(`Added to cart:\n${name}\nSize: ${size}\nQuantity: ${quantity}`);
+}
+
+// Function to open WhatsApp with cart content
+function orderViaWhatsApp() {
+  if (cartItems.length === 0) {
+    alert("Your cart is empty.");
+    return;
+  }
+  let message = "Hello, I want to order:\n";
+  cartItems.forEach((item, index) => {
+    message += `${index + 1}. ${item.name} - Size: ${item.size} - Qty: ${item.quantity}\n`;
+  });
+  const encoded = encodeURIComponent(message);
+  const whatsappUrl = `https://wa.me/60123456789?text=${encoded}`;
+  window.open(whatsappUrl, "_blank");
+}
+</script>
+</head>
+<body>
+<header style="background-color: #8b0000; color: white; text-align: center; padding: 30px 0;">
+<div class="logo" style="text-align: center; font-size: 24px; font-weight: bold; color: white;">
+    Baisics | Ozons Picks
+    <div class="nav-links" style="background-color: #8b0000; padding: 10px 0; text-align: center;">
+<a href="#clothes" style="font-size: 14px; margin: 0 8px; text-decoration: underline; color: #8b0000;">
+      Clothes
+     </a>
+<a href="#bags" style="font-size: 14px; margin: 0 8px; text-decoration: underline; color: #8b0000;">
+      Bags
+     </a>
+<a href="#shoes" style="font-size: 14px; margin: 0 8px; text-decoration: underline; color: #8b0000;">
+      Shoes
+     </a>
+<a href="#accessories" style="font-size: 14px; margin: 0 8px; text-decoration: underline; color: #8b0000;">
+      Accessories
+     </a>
+</div>
+</div>
+<div class="cart-icon" style="position: absolute; right: 20px; top: 20px; font-size: 20px; color: #000;">
+    🛒
+   </div>
+<div class="cart-indicator" style="position: absolute; top: 20px; right: 20px; font-size: 14px;"><span style="position: relative; display: inline-block;"><span style="font-size: 22px;">🛒</span><span id="cart-count" style="position: absolute; top: -8px; right: -10px; background-color: #8b0000; color: white; border-radius: 50%; padding: 2px 6px; font-size: 12px;">0</span></span></div>
+</header>
+<section id="intro" style="background-color: #f8f8f8; padding: 30px 20px;">
+<h2 class="section-title">
+    Why I Started This Store
+   </h2>
+<p>
+    I created this store to bring trendy, affordable items directly to people who love fashion and want something cute, stylish, and special.
+   </p>
+</section>
+<section id="clothes" style="background-color: #f8f8f8; padding: 30px 20px;">
+<h2 class="section-title">
+    Clothes
+   </h2>
+<div class="product-grid">
+<div class="product-card">
+<img alt="Hoodie Pink" id="hoodie1-img" src="https://via.placeholder.com/300x400?text=Hoodie+Pink"/>
+<div style="margin-top:10px; text-align:center;">
+<img onclick="switchImage('hoodie1-img', 'https://via.placeholder.com/300x400?text=Hoodie+Pink', this)" src="https://via.placeholder.com/50x50?text=1" style="width:40px;height:40px;margin:2px;cursor:pointer;border:2px solid #8b0000;"/>
+<img onclick="switchImage('hoodie1-img', 'https://via.placeholder.com/300x400?text=Hoodie+White', this)" src="https://via.placeholder.com/50x50?text=2" style="width:40px;height:40px;margin:2px;cursor:pointer;border:2px solid transparent;"/>
+<img onclick="switchImage('hoodie1-img', 'https://via.placeholder.com/300x400?text=Hoodie+Black', this)" src="https://via.placeholder.com/50x50?text=3" style="width:40px;height:40px;margin:2px;cursor:pointer;border:2px solid transparent;"/>
+</div>
+<div class="product-info">
+<div class="product-title">
+       Pink Hoodie
+      </div>
+<div class="product-price">
+       RM59.00
+      </div>
+<label for="size1">
+       Size:
+      </label>
+<select id="size1">
+<option>
+        S
+       </option>
+<option>
+        M
+       </option>
+<option>
+        L
+       </option>
+</select>
+<label for="qty1">
+       Qty:
+      </label>
+<select id="qty1">
+<option>
+        1
+       </option>
+<option>
+        2
+       </option>
+<option>
+        3
+       </option>
+</select>
+<button>
+       Add to Cart
+      </button>
+</div>
+</div>
+<div class="product-card">
+<img alt="Hoodie White" src="https://via.placeholder.com/300x400?text=Hoodie+White"/>
+<div class="product-info">
+<div class="product-title">
+       White Hoodie
+      </div>
+<div class="product-price">
+       RM59.00
+      </div>
+<label for="size2">
+       Size:
+      </label>
+<select id="size2">
+<option>
+        S
+       </option>
+<option>
+        M
+       </option>
+<option>
+        L
+       </option>
+</select>
+<label for="qty2">
+       Qty:
+      </label>
+<select id="qty2">
+<option>
+        1
+       </option>
+<option>
+        2
+       </option>
+<option>
+        3
+       </option>
+</select>
+<button>
+       Add to Cart
+      </button>
+</div>
+</div>
+</div>
+</section>
+<section id="bags" style="background-color: #f8f8f8; padding: 30px 20px;">
+<h2 class="section-title">
+    Bags
+   </h2>
+<div class="product-grid">
+<div class="product-card">
+<img alt="Hoodie Pink" id="hoodie2-img" src="https://via.placeholder.com/300x400?text=Hoodie+Pink"/>
+<div style="margin-top:10px; text-align:center;">
+<img onclick="switchImage('hoodie2-img', 'https://via.placeholder.com/300x400?text=Hoodie+Pink', this)" src="https://via.placeholder.com/50x50?text=1" style="width:40px;height:40px;margin:2px;cursor:pointer;border:2px solid #8b0000;"/>
+<img onclick="switchImage('hoodie2-img', 'https://via.placeholder.com/300x400?text=Hoodie+White', this)" src="https://via.placeholder.com/50x50?text=2" style="width:40px;height:40px;margin:2px;cursor:pointer;border:2px solid transparent;"/>
+<img onclick="switchImage('hoodie2-img', 'https://via.placeholder.com/300x400?text=Hoodie+Black', this)" src="https://via.placeholder.com/50x50?text=3" style="width:40px;height:40px;margin:2px;cursor:pointer;border:2px solid transparent;"/>
+</div>
+<div class="product-info">
+<div class="product-title">
+       Pink Hoodie
+      </div>
+<div class="product-price">
+       RM59.00
+      </div>
+<label for="size1">
+       Size:
+      </label>
+<select id="size1">
+<option>
+        S
+       </option>
+<option>
+        M
+       </option>
+<option>
+        L
+       </option>
+</select>
+<label for="qty1">
+       Qty:
+      </label>
+<select id="qty1">
+<option>
+        1
+       </option>
+<option>
+        2
+       </option>
+<option>
+        3
+       </option>
+</select>
+<button>
+       Add to Cart
+      </button>
+</div>
+</div>
+<div class="product-card">
+<img alt="Hoodie White" src="https://via.placeholder.com/300x400?text=Hoodie+White"/>
+<div class="product-info">
+<div class="product-title">
+       White Hoodie
+      </div>
+<div class="product-price">
+       RM59.00
+      </div>
+<label for="size2">
+       Size:
+      </label>
+<select id="size2">
+<option>
+        S
+       </option>
+<option>
+        M
+       </option>
+<option>
+        L
+       </option>
+</select>
+<label for="qty2">
+       Qty:
+      </label>
+<select id="qty2">
+<option>
+        1
+       </option>
+<option>
+        2
+       </option>
+<option>
+        3
+       </option>
+</select>
+<button>
+       Add to Cart
+      </button>
+</div>
+</div>
+</div>
+</section>
+<section id="shoes" style="background-color: #f8f8f8; padding: 30px 20px;">
+<h2 class="section-title">
+    Shoes
+   </h2>
+<div class="product-grid">
+<div class="product-card">
+<img alt="Hoodie Pink" id="hoodie3-img" src="https://via.placeholder.com/300x400?text=Hoodie+Pink"/>
+<div style="margin-top:10px; text-align:center;">
+<img onclick="switchImage('hoodie3-img', 'https://via.placeholder.com/300x400?text=Hoodie+Pink', this)" src="https://via.placeholder.com/50x50?text=1" style="width:40px;height:40px;margin:2px;cursor:pointer;border:2px solid #8b0000;"/>
+<img onclick="switchImage('hoodie3-img', 'https://via.placeholder.com/300x400?text=Hoodie+White', this)" src="https://via.placeholder.com/50x50?text=2" style="width:40px;height:40px;margin:2px;cursor:pointer;border:2px solid transparent;"/>
+<img onclick="switchImage('hoodie3-img', 'https://via.placeholder.com/300x400?text=Hoodie+Black', this)" src="https://via.placeholder.com/50x50?text=3" style="width:40px;height:40px;margin:2px;cursor:pointer;border:2px solid transparent;"/>
+</div>
+<div class="product-info">
+<div class="product-title">
+       Pink Hoodie
+      </div>
+<div class="product-price">
+       RM59.00
+      </div>
+<label for="size1">
+       Size:
+      </label>
+<select id="size1">
+<option>
+        S
+       </option>
+<option>
+        M
+       </option>
+<option>
+        L
+       </option>
+</select>
+<label for="qty1">
+       Qty:
+      </label>
+<select id="qty1">
+<option>
+        1
+       </option>
+<option>
+        2
+       </option>
+<option>
+        3
+       </option>
+</select>
+<button>
+       Add to Cart
+      </button>
+</div>
+</div>
+<div class="product-card">
+<img alt="Hoodie White" src="https://via.placeholder.com/300x400?text=Hoodie+White"/>
+<div class="product-info">
+<div class="product-title">
+       White Hoodie
+      </div>
+<div class="product-price">
+       RM59.00
+      </div>
+<label for="size2">
+       Size:
+      </label>
+<select id="size2">
+<option>
+        S
+       </option>
+<option>
+        M
+       </option>
+<option>
+        L
+       </option>
+</select>
+<label for="qty2">
+       Qty:
+      </label>
+<select id="qty2">
+<option>
+        1
+       </option>
+<option>
+        2
+       </option>
+<option>
+        3
+       </option>
+</select>
+<button>
+       Add to Cart
+      </button>
+</div>
+</div>
+</div>
+</section>
+<section id="accessories" style="background-color: #f8f8f8; padding: 30px 20px;">
+<h2 class="section-title">
+    Accessories
+   </h2>
+<div class="product-grid">
+<div class="product-card">
+<img alt="Hoodie Pink" id="hoodie4-img" src="https://via.placeholder.com/300x400?text=Hoodie+Pink"/>
+<div style="margin-top:10px; text-align:center;">
+<img onclick="switchImage('hoodie4-img', 'https://via.placeholder.com/300x400?text=Hoodie+Pink', this)" src="https://via.placeholder.com/50x50?text=1" style="width:40px;height:40px;margin:2px;cursor:pointer;border:2px solid #8b0000;"/>
+<img onclick="switchImage('hoodie4-img', 'https://via.placeholder.com/300x400?text=Hoodie+White', this)" src="https://via.placeholder.com/50x50?text=2" style="width:40px;height:40px;margin:2px;cursor:pointer;border:2px solid transparent;"/>
+<img onclick="switchImage('hoodie4-img', 'https://via.placeholder.com/300x400?text=Hoodie+Black', this)" src="https://via.placeholder.com/50x50?text=3" style="width:40px;height:40px;margin:2px;cursor:pointer;border:2px solid transparent;"/>
+</div>
+<div class="product-info">
+<div class="product-title">
+       Pink Hoodie
+      </div>
+<div class="product-price">
+       RM59.00
+      </div>
+<label for="size1">
+       Size:
+      </label>
+<select id="size1">
+<option>
+        S
+       </option>
+<option>
+        M
+       </option>
+<option>
+        L
+       </option>
+</select>
+<label for="qty1">
+       Qty:
+      </label>
+<select id="qty1">
+<option>
+        1
+       </option>
+<option>
+        2
+       </option>
+<option>
+        3
+       </option>
+</select>
+<button>
+       Add to Cart
+      </button>
+</div>
+</div>
+<div class="product-card">
+<img alt="Hoodie White" src="https://via.placeholder.com/300x400?text=Hoodie+White"/>
+<div class="product-info">
+<div class="product-title">
+       White Hoodie
+      </div>
+<div class="product-price">
+       RM59.00
+      </div>
+<label for="size2">
+       Size:
+      </label>
+<select id="size2">
+<option>
+        S
+       </option>
+<option>
+        M
+       </option>
+<option>
+        L
+       </option>
+</select>
+<label for="qty2">
+       Qty:
+      </label>
+<select id="qty2">
+<option>
+        1
+       </option>
+<option>
+        2
+       </option>
+<option>
+        3
+       </option>
+</select>
+<button>
+       Add to Cart
+      </button>
+</div>
+</div>
+</div>
+</section>
+<section class="faq" style="background-color: #f8f8f8; padding: 30px 20px;">
+<h2 class="section-title">
+    FAQ
+   </h2>
+<p>
+<strong>
+     Q: Are products ready stock?
+    </strong>
+    A: All products are pre-order, shipped in 2-3 weeks.
+   </p>
+<p>
+<strong>
+     Q: Payment methods?
+    </strong>
+    A: Online payment and Cash on Delivery (COD).
+   </p>
+</section>
+<section class="reviews" style="background-color: #f8f8f8; padding: 30px 20px;">
+<h2 class="section-title">
+    Customer Reviews
+   </h2>
+<p>
+    ⭐⭐⭐⭐⭐ “Great quality hoodie! Will repurchase.”
+   </p>
+<p>
+    ⭐⭐⭐⭐ “Very helpful customer service, thank you!”
+   </p>
+</section>
+<section class="policy" style="background-color: #f8f8f8; padding: 30px 20px;">
+<h2 class="section-title">
+    Store Policy
+   </h2>
+<p>
+<strong>
+     Shipping:
+    </strong>
+<span>
+     We only ship within Malaysia.
+    </span>
+</p>
+<p>
+<strong>
+     Delivery Time:
+    </strong>
+<span>
+     Pre-order products will arrive within 2 to 3 weeks.
+    </span>
+</p>
+</section>
+<section class="contact" style="background-color: #f8f8f8; padding: 30px 20px;">
+<h2 class="section-title">
+    Contact Us
+   </h2>
+<a href="#">
+    TikTok
+   </a>
+<a href="#">
+    Instagram
+   </a>
+<a href="#">
+    Facebook
+   </a>
+<a href="https://wa.me/60123456789">
+    WhatsApp
+   </a>
+</section>
+<script>
+function addToCart(button) {
+  const product = button.closest('.product');
+  const name = product.querySelector('h3') ? product.querySelector('h3').innerText : 'Item';
+  const size = product.querySelector('select') ? product.querySelector('select').value : '';
+  const quantity = product.querySelector('input[type=number]') ? product.querySelector('input[type=number]').value : 1;
+  alert(`Added to cart:\n${name}\nSize: ${size}\nQuantity: ${quantity}`);
+}
+</script><div style="text-align:center; margin: 40px 0;"><button onclick="orderViaWhatsApp()" style="background-color:#25D366; color:white; padding:10px 20px; font-size:16px; border:none; border-radius:5px;">Order via WhatsApp</button></div>
+<div id="cartOverlay" onclick="closeCart()" style="display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.5);z-index:999;"></div>
+<div id="cartDrawer" style="position:fixed;top:0;right:0;width:25%;height:100%;background:#fff;box-shadow:-2px 0 5px rgba(0,0,0,0.5);padding:20px;display:none;z-index:1000;">
+<div style="display:flex;justify-content:space-between;align-items:center;">
+<h2>Your Cart</h2>
+<span onclick="closeCart()" style="cursor:pointer;font-weight:bold;font-size:18px;">×</span>
+</div>
+<div id="cartItems"></div>
+<p id="cartTotal" style="font-weight:bold;margin-top:10px;"></p>
+<button onclick="checkoutWhatsApp()" style="background-color:#25D366;color:white;padding:10px 20px;border:none;border-radius:5px;width:100%;margin-top:10px;">Order via WhatsApp</button>
+</div>
+<div onclick="openCart()" style="position:fixed;top:20px;right:20px;cursor:pointer;z-index:1001;">
+  🛒 <span id="cart-count" style="background:black;color:white;border-radius:50%;padding:2px 7px;font-size:12px;">0</span>
+</div>
+<script>
+let cart = [];
+
+function addToCart(button) {
+  const product = button.closest('.product');
+  const name = product.querySelector('h3')?.innerText || 'Item';
+  const size = product.querySelector('select')?.value || '';
+  const qty = parseInt(product.querySelector('input[type=number]')?.value || 1);
+  const price = 100;
+  cart.push({ name, size, qty, price });
+  updateCartDisplay();
+  openCart();
+}
+
+function updateCartDisplay() {
+  const container = document.getElementById("cartItems");
+  const count = document.getElementById("cart-count");
+  const totalDisplay = document.getElementById("cartTotal");
+  container.innerHTML = "";
+  let total = 0;
+
+  cart.forEach((item, i) => {
+    total += item.qty * item.price;
+    container.innerHTML += `
+      <div style='border-bottom:1px solid #ccc;padding:10px 0;'>
+        <strong>${item.name}</strong><br>
+        Size: ${item.size}<br>
+        Qty: ${item.qty}<br>
+        Price: RM${(item.qty * item.price).toFixed(2)}<br>
+        <button onclick="removeItem(${i})" style="margin-top:5px;">Remove</button>
+      </div>`;
+  });
+
+  count.innerText = cart.reduce((s, i) => s + i.qty, 0);
+  totalDisplay.innerText = "Total: RM " + total.toFixed(2);
+}
+
+function removeItem(i) {
+  cart.splice(i, 1);
+  updateCartDisplay();
+}
+
+function openCart() {
+  document.getElementById("cartDrawer").style.display = "block";
+  document.getElementById("cartOverlay").style.display = "block";
+}
+
+function closeCart() {
+  document.getElementById("cartDrawer").style.display = "none";
+  document.getElementById("cartOverlay").style.display = "none";
+}
+
+function checkoutWhatsApp() {
+  if (cart.length === 0) return alert("Your cart is empty.");
+  let message = "Hello, I want to order:\n";
+  let total = 0;
+  cart.forEach(item => {
+    message += `- ${item.name} (Size: ${item.size}, Qty: ${item.qty}) - RM${item.qty * item.price}\n`;
+    total += item.qty * item.price;
+  });
+  message += `\nTotal: RM${total}`;
+  window.open("https://wa.me/60123456789?text=" + encodeURIComponent(message), "_blank");
+}
+</script></body>
+</html>
