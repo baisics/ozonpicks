@@ -162,10 +162,10 @@
      </a>
 </div>
 </div>
-<div class="cart-icon" style="position: absolute; right: 20px; top: 20px; font-size: 20px; color: #000;">
+<div class="cart-icon" id="cartTrigger" style="position: absolute; right: 20px; top: 20px; font-size: 20px; color: #000;">
     🛒
    </div>
-<div class="cart-indicator" style="position: absolute; top: 20px; right: 20px; font-size: 14px;"><span style="position: relative; display: inline-block;"><span style="font-size: 22px;">🛒</span><span id="cart-count" style="position: absolute; top: -8px; right: -10px; background-color: #8b0000; color: white; border-radius: 50%; padding: 2px 6px; font-size: 12px;">0</span></span></div>
+<div class="cart-indicator" id="cartIndicator" style="position: absolute; top: 20px; right: 20px; font-size: 14px;"><span style="position: relative; display: inline-block;"><span style="font-size: 22px;">🛒</span><span id="cart-count" style="position: absolute; top: -8px; right: -10px; background-color: #8b0000; color: white; border-radius: 50%; padding: 2px 6px; font-size: 12px;">0</span></span></div>
 </header>
 <section id="intro" style="background-color: #f8f8f8; padding: 30px 20px;">
 <h2 class="section-title">
@@ -628,11 +628,11 @@
 
 
 
-<div id="cart-drawer" style="position: fixed; top: 0; right: -100%; width: 25%; height: 100%; background: white; box-shadow: -2px 0 5px rgba(0,0,0,0.2); z-index: 9999; transition: right 0.3s ease;">
+<div id="cart-drawer" class="cart-drawer" style="position: fixed; top: 0; right: -100%; width: 25%; height: 100%; background: white; box-shadow: -2px 0 5px rgba(0,0,0,0.2); z-index: 9999; transition: right 0.3s ease;">
 <div style="padding: 20px;">
 <div style="display:flex; justify-content:space-between; align-items:center;">
 <h3>Your Cart</h3>
-<span onclick="toggleCart(false)" style="cursor:pointer; font-size:20px;">×</span>
+<span id="closeCart" class="cart-close" style="cursor:pointer; font-size:20px;">×</span>
 </div>
 <ul id="cart-list" style="list-style:none; padding:0;"></ul>
 <p style="margin-top:10px;"><strong>Total: RM<span id="cart-total">0.00</span></strong></p>
@@ -705,5 +705,29 @@ function orderViaWhatsApp() {
   window.open(whatsappUrl, "_blank");
 }
 </script>
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+  const drawer = document.getElementById("cart-drawer");
+  const icon1 = document.getElementById("cartTrigger");
+  const icon2 = document.getElementById("cartIndicator");
+  const closeBtn = document.getElementById("closeCart");
+
+  [icon1, icon2].forEach(icon => {
+    if (icon && drawer) {
+      icon.addEventListener("click", function () {
+        drawer.style.right = "0";
+      });
+    }
+  });
+
+  if (closeBtn && drawer) {
+    closeBtn.addEventListener("click", function () {
+      drawer.style.right = "-100%";
+    });
+  }
+});
+</script>
+
 </body>
 </html>
