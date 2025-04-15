@@ -135,56 +135,7 @@
   font-weight: bold;
 }
 </style>
-<script>
-   function switchImage(id, newSrc, clickedEl) {
-    document.getElementById(id).src = newSrc;
-    const siblings = clickedEl.parentNode.querySelectorAll('img');
-    siblings.forEach(img => img.style.border = "2px solid transparent");
-    clickedEl.style.border = "2px solid #8b0000";
-  }
-  
-let cartCount = 0;
-function addToCart(button) {
-  const product = button.closest('.product');
-  const name = product.querySelector('h3') ? product.querySelector('h3').innerText : 'Item';
-  const size = product.querySelector('select') ? product.querySelector('select').value : '';
-  const quantity = product.querySelector('input[type=number]') ? parseInt(product.querySelector('input[type=number]').value) : 1;
-  cartCount += quantity;
-  document.getElementById('cart-count').innerText = cartCount;
-  alert(`Added to cart:\n${name}\nSize: ${size}\nQuantity: ${quantity}`);
-}
 
-let cartItems = [];
-
-function addToCart(button) {
-  const product = button.closest('.product');
-  const name = product.querySelector('h3') ? product.querySelector('h3').innerText : 'Item';
-  const size = product.querySelector('select') ? product.querySelector('select').value : '';
-  const quantity = product.querySelector('input[type=number]') ? parseInt(product.querySelector('input[type=number]').value) : 1;
-
-  cartItems.push({ name, size, quantity });
-
-  let cartCount = cartItems.reduce((sum, item) => sum + item.quantity, 0);
-  document.getElementById('cart-count').innerText = cartCount;
-
-  alert(`Added to cart:\n${name}\nSize: ${size}\nQuantity: ${quantity}`);
-}
-
-// Function to open WhatsApp with cart content
-function orderViaWhatsApp() {
-  if (cartItems.length === 0) {
-    alert("Your cart is empty.");
-    return;
-  }
-  let message = "Hello, I want to order:\n";
-  cartItems.forEach((item, index) => {
-    message += `${index + 1}. ${item.name} - Size: ${item.size} - Qty: ${item.quantity}\n`;
-  });
-  const encoded = encodeURIComponent(message);
-  const whatsappUrl = `https://wa.me/60123456789?text=${encoded}`;
-  window.open(whatsappUrl, "_blank");
-}
-</script>
 </head>
 <body>
 <header style="background-color: #8b0000; color: white; text-align: center; padding: 30px 0;">
@@ -265,7 +216,7 @@ function orderViaWhatsApp() {
         3
        </option>
 </select>
-<button>
+<button onclick="addToCart(this)">
        Add to Cart
       </button>
 </div>
@@ -307,7 +258,7 @@ function orderViaWhatsApp() {
         3
        </option>
 </select>
-<button>
+<button onclick="addToCart(this)">
        Add to Cart
       </button>
 </div>
@@ -361,7 +312,7 @@ function orderViaWhatsApp() {
         3
        </option>
 </select>
-<button>
+<button onclick="addToCart(this)">
        Add to Cart
       </button>
 </div>
@@ -403,7 +354,7 @@ function orderViaWhatsApp() {
         3
        </option>
 </select>
-<button>
+<button onclick="addToCart(this)">
        Add to Cart
       </button>
 </div>
@@ -457,7 +408,7 @@ function orderViaWhatsApp() {
         3
        </option>
 </select>
-<button>
+<button onclick="addToCart(this)">
        Add to Cart
       </button>
 </div>
@@ -499,7 +450,7 @@ function orderViaWhatsApp() {
         3
        </option>
 </select>
-<button>
+<button onclick="addToCart(this)">
        Add to Cart
       </button>
 </div>
@@ -553,7 +504,7 @@ function orderViaWhatsApp() {
         3
        </option>
 </select>
-<button>
+<button onclick="addToCart(this)">
        Add to Cart
       </button>
 </div>
@@ -595,7 +546,7 @@ function orderViaWhatsApp() {
         3
        </option>
 </select>
-<button>
+<button onclick="addToCart(this)">
        Add to Cart
       </button>
 </div>
@@ -668,90 +619,193 @@ function orderViaWhatsApp() {
     WhatsApp
    </a>
 </section>
-<script>
-function addToCart(button) {
-  const product = button.closest('.product');
-  const name = product.querySelector('h3') ? product.querySelector('h3').innerText : 'Item';
-  const size = product.querySelector('select') ? product.querySelector('select').value : '';
-  const quantity = product.querySelector('input[type=number]') ? product.querySelector('input[type=number]').value : 1;
-  alert(`Added to cart:\n${name}\nSize: ${size}\nQuantity: ${quantity}`);
-}
-</script><div style="text-align:center; margin: 40px 0;"><button onclick="orderViaWhatsApp()" style="background-color:#25D366; color:white; padding:10px 20px; font-size:16px; border:none; border-radius:5px;">Order via WhatsApp</button></div>
-<div id="cartOverlay" onclick="closeCart()" style="display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.5);z-index:999;"></div>
-<div id="cartDrawer" style="position:fixed;top:0;right:0;width:25%;height:100%;background:#fff;box-shadow:-2px 0 5px rgba(0,0,0,0.5);padding:20px;display:none;z-index:1000;">
-<div style="display:flex;justify-content:space-between;align-items:center;">
-<h2>Your Cart</h2>
-<span onclick="closeCart()" style="cursor:pointer;font-weight:bold;font-size:18px;">×</span>
-</div>
-<div id="cartItems"></div>
-<p id="cartTotal" style="font-weight:bold;margin-top:10px;"></p>
-<button onclick="checkoutWhatsApp()" style="background-color:#25D366;color:white;padding:10px 20px;border:none;border-radius:5px;width:100%;margin-top:10px;">Order via WhatsApp</button>
-</div>
-<div onclick="openCart()" style="position:fixed;top:20px;right:20px;cursor:pointer;z-index:1001;">
-  🛒 <span id="cart-count" style="background:black;color:white;border-radius:50%;padding:2px 7px;font-size:12px;">0</span>
-</div>
-<script>
-let cart = [];
 
-function addToCart(button) {
-  const product = button.closest('.product');
-  const name = product.querySelector('h3')?.innerText || 'Item';
-  const size = product.querySelector('select')?.value || '';
-  const qty = parseInt(product.querySelector('input[type=number]')?.value || 1);
-  const price = 100;
-  cart.push({ name, size, qty, price });
-  updateCartDisplay();
-  openCart();
+
+
+<div id="cart-drawer" style="position: fixed; top: 0; right: -100%; width: 25%; height: 100%; background: white; box-shadow: -2px 0 5px rgba(0,0,0,0.2); z-index: 9999; transition: right 0.3s ease;">
+<div style="padding: 20px;">
+<div style="display:flex; justify-content:space-between; align-items:center;">
+<h3>Your Cart</h3>
+<span onclick="toggleCart(false)" style="cursor:pointer; font-size:20px;">×</span>
+</div>
+<ul id="cart-list" style="list-style:none; padding:0;"></ul>
+<p style="margin-top:10px;"><strong>Total: RM<span id="cart-total">0.00</span></strong></p>
+<button onclick="orderViaWhatsApp()" style="margin-top: 10px; background-color:#25D366; color:white; padding:10px 20px; font-size:16px; border:none; border-radius:5px;">Checkout via WhatsApp</button>
+</div>
+</div>
+
+<script>
+let cartItems = [];
+
+function toggleCart(show) {
+  const drawer = document.getElementById('cart-drawer');
+  drawer.style.right = show ? '0' : '-100%';
 }
 
-function updateCartDisplay() {
-  const container = document.getElementById("cartItems");
-  const count = document.getElementById("cart-count");
-  const totalDisplay = document.getElementById("cartTotal");
-  container.innerHTML = "";
-  let total = 0;
+document.querySelector('.cart-icon').addEventListener('click', () => {
+  toggleCart(true);
+});
 
-  cart.forEach((item, i) => {
-    total += item.qty * item.price;
-    container.innerHTML += `
-      <div style='border-bottom:1px solid #ccc;padding:10px 0;'>
-        <strong>${item.name}</strong><br>
-        Size: ${item.size}<br>
-        Qty: ${item.qty}<br>
-        Price: RM${(item.qty * item.price).toFixed(2)}<br>
-        <button onclick="removeItem(${i})" style="margin-top:5px;">Remove</button>
-      </div>`;
+function addToCart(button) {
+  const productCard = button.closest('.product-card');
+  const name = productCard.querySelector('.product-title').innerText;
+  const price = parseFloat(productCard.querySelector('.product-price').innerText.replace('RM', ''));
+  const size = productCard.querySelector('select').value;
+  const quantity = parseInt(productCard.querySelectorAll('select')[1].value);
+
+  cartItems.push({ name, size, quantity, price });
+  updateCartUI();
+}
+
+function updateCartUI() {
+  const cartList = document.getElementById('cart-list');
+  const cartCount = document.getElementById('cart-count');
+  const cartTotal = document.getElementById('cart-total');
+
+  cartList.innerHTML = '';
+  let totalItems = 0;
+  let totalPrice = 0;
+
+  cartItems.forEach((item, index) => {
+    totalItems += item.quantity;
+    totalPrice += item.price * item.quantity;
+
+    const li = document.createElement('li');
+    li.innerHTML = `${item.name} (Size: ${item.size}) x${item.quantity} - RM${(item.price * item.quantity).toFixed(2)} 
+      <button onclick="removeFromCart(${index})" style="margin-left:10px; background:red; color:white; border:none; padding:2px 6px; font-size:12px;">Remove</button>`;
+    cartList.appendChild(li);
   });
 
-  count.innerText = cart.reduce((s, i) => s + i.qty, 0);
-  totalDisplay.innerText = "Total: RM " + total.toFixed(2);
+  cartCount.innerText = totalItems;
+  cartTotal.innerText = totalPrice.toFixed(2);
 }
 
-function removeItem(i) {
-  cart.splice(i, 1);
-  updateCartDisplay();
+function removeFromCart(index) {
+  cartItems.splice(index, 1);
+  updateCartUI();
 }
 
-function openCart() {
-  document.getElementById("cartDrawer").style.display = "block";
-  document.getElementById("cartOverlay").style.display = "block";
-}
-
-function closeCart() {
-  document.getElementById("cartDrawer").style.display = "none";
-  document.getElementById("cartOverlay").style.display = "none";
-}
-
-function checkoutWhatsApp() {
-  if (cart.length === 0) return alert("Your cart is empty.");
+function orderViaWhatsApp() {
+  if (cartItems.length === 0) {
+    alert("Your cart is empty.");
+    return;
+  }
   let message = "Hello, I want to order:\n";
-  let total = 0;
-  cart.forEach(item => {
-    message += `- ${item.name} (Size: ${item.size}, Qty: ${item.qty}) - RM${item.qty * item.price}\n`;
-    total += item.qty * item.price;
+  cartItems.forEach((item, i) => {
+    message += `${i + 1}. ${item.name} - Size: ${item.size} - Qty: ${item.quantity}\n`;
   });
-  message += `\nTotal: RM${total}`;
-  window.open("https://wa.me/60123456789?text=" + encodeURIComponent(message), "_blank");
+  const encoded = encodeURIComponent(message);
+  const whatsappUrl = `https://wa.me/60123456789?text=${encoded}`;
+  window.open(whatsappUrl, "_blank");
 }
-</script></body>
+</script>
+
+<!-- Cart Drawer -->
+<div id="cart-drawer" style="position: fixed; top: 0; right: -25%; width: 25%; height: 100%; background: white; box-shadow: -2px 0 8px rgba(0,0,0,0.2); z-index: 1001; transition: right 0.3s ease; padding: 20px; overflow-y: auto;">
+  <div style="display: flex; justify-content: space-between; align-items: center;">
+    <h2>Your Cart</h2>
+    <span onclick="toggleCartDrawer()" style="cursor: pointer; font-size: 20px;">&times;</span>
+  </div>
+  <div id="cart-items"></div>
+  <hr>
+  <div style="margin-top: 10px;">
+    <strong>Total:</strong> RM<span id="cart-total">0.00</span>
+  </div>
+  <a id="checkout-btn" href="#" target="_blank" style="display: inline-block; margin-top: 15px; padding: 10px; background: green; color: white; text-decoration: none; text-align: center; width: 100%;">Checkout via WhatsApp</a>
+</div>
+
+</body>
+
+<script>
+  const cartDrawer = document.getElementById("cart-drawer");
+  const cartIcon = document.querySelector(".cart-icon");
+  const cartCountBubble = document.getElementById("cart-count");
+  const cartItemsContainer = document.getElementById("cart-items");
+  const cartTotal = document.getElementById("cart-total");
+  const checkoutBtn = document.getElementById("checkout-btn");
+
+  function toggleCartDrawer() {
+    if (cartDrawer.style.right === "0px") {
+      cartDrawer.style.right = "-25%";
+    } else {
+      cartDrawer.style.right = "0px";
+      renderCart();
+    }
+  }
+
+  cartIcon.addEventListener("click", toggleCartDrawer);
+
+  function renderCart() {
+    const cart = JSON.parse(localStorage.getItem("cart")) || [];
+    cartItemsContainer.innerHTML = "";
+    let total = 0;
+
+    cart.forEach((item, index) => {
+      const itemTotal = item.price * item.qty;
+      total += itemTotal;
+
+      const div = document.createElement("div");
+      div.innerHTML = `
+        <div style="margin-bottom: 10px;">
+          <strong>${item.name}</strong><br>
+          Option: ${item.option}<br>
+          Qty: ${item.qty} x RM${item.price}<br>
+          <button onclick="removeCartItem(${index})" style="color: red;">Remove</button>
+        </div>
+      `;
+      cartItemsContainer.appendChild(div);
+    });
+
+    cartTotal.innerText = total.toFixed(2);
+    updateCheckoutLink(cart);
+  }
+
+  function removeCartItem(index) {
+    const cart = JSON.parse(localStorage.getItem("cart")) || [];
+    cart.splice(index, 1);
+    localStorage.setItem("cart", JSON.stringify(cart));
+    updateCartCount();
+    renderCart();
+  }
+
+  function updateCartCount() {
+    const cart = JSON.parse(localStorage.getItem("cart")) || [];
+    let count = cart.reduce((sum, item) => sum + item.qty, 0);
+    cartCountBubble.innerText = count;
+  }
+
+  function updateCheckoutLink(cart) {
+    let message = "Order Details:%0A";
+    cart.forEach(item => {
+      message += `${item.name} (${item.option}) x ${item.qty} - RM${(item.price * item.qty).toFixed(2)}%0A`;
+    });
+    message += `%0ATotal: RM${cart.reduce((sum, item) => sum + item.price * item.qty, 0).toFixed(2)}`;
+    checkoutBtn.href = "https://wa.me/?text=" + message;
+  }
+
+  updateCartCount();
+</script>
+
 </html>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const allCartIcons = document.querySelectorAll(".cart-icon, .cart-indicator span");
+    const cartDrawer = document.getElementById("cart-drawer");
+
+    allCartIcons.forEach(icon => {
+      icon.addEventListener("click", function () {
+        if (cartDrawer) {
+          cartDrawer.style.right = "0";
+        }
+      });
+    });
+
+    const closeDrawerBtn = cartDrawer.querySelector("span[onclick*='toggleCart']");
+    if (closeDrawerBtn) {
+      closeDrawerBtn.addEventListener("click", function () {
+        cartDrawer.style.right = "-100%";
+      });
+    }
+  });
+</script>
