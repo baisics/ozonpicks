@@ -743,5 +743,16 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 </script>
 
+
+<script>
+function switchImage(imgId, url, el) {
+  document.getElementById(imgId).src = url;
+  // Optional visual feedback for selected swatch
+  const siblings = el.parentNode.querySelectorAll('img');
+  siblings.forEach(img => img.style.border = "2px solid transparent");
+  el.style.border = "2px solid #800000"; // Burgundy highlight
+}
+</script>
+
 </body>
 </html>
