@@ -5,7 +5,7 @@
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <title>
-   Baisics | Ozons Picks
+   Ozons Picks
   </title>
 <style>
    * {
@@ -145,7 +145,7 @@
 <body>
 <header style="background-color: #8b0000; color: white; text-align: center; padding: 30px 0;">
 <div class="logo" style="text-align: center; font-size: 24px; font-weight: bold; color: white;">
-    Baisics | Ozons Picks
+    Ozons Picks
     <div class="nav-links" style="background-color: #8b0000; padding: 10px 0; text-align: center;">
 <a href="#outfits" style="font-size: 14px; margin: 0 8px; text-decoration: underline; color: #8b0000;">Outfits</a><a href="#clothes" style="font-size: 14px; margin: 0 8px; text-decoration: underline; color: #8b0000;">
       Clothes
@@ -411,7 +411,63 @@
       </button>
 </div>
 </div>
-  
+   <div class="product-card">
+<img alt="Hoodie Pink" id="hoodie12-img" src="https://i.postimg.cc/gJjKyXRJ/IMG-0662.jpg"/>
+<div style="margin-top:10px; text-align:center;">
+<img onclick="switchImage('hoodie12-img', 'https://i.postimg.cc/gJjKyXRJ/IMG-0662.jpg', this)" src="https://i.postimg.cc/gJjKyXRJ/IMG-0662.jpg" style="width:40px;height:40px;margin:2px;cursor:pointer;border:2px solid #8b0000;"/>
+
+<img onclick="switchImage('hoodie12-img', 'https://i.postimg.cc/TPR0wH3n/IMG-0663.jpg', this)" src="https://i.postimg.cc/TPR0wH3n/IMG-0663.jpg" style="width:40px;height:40px;margin:2px;cursor:pointer;border:2px solid transparent;"/>
+
+<img onclick="switchImage('hoodie12-img', 'https://i.postimg.cc/hvHMtDXG/IMG-0664.jpg', this)" src="https://i.postimg.cc/hvHMtDXG/IMG-0664.jpg" style="width:40px;height:40px;margin:2px;cursor:pointer;border:2px solid transparent;"/>
+</div>
+<div class="product-info">
+<div class="product-title">
+       Pink Hoodie
+      </div>
+<div class="product-price">
+       RM59.00
+      </div>
+<label for="size1">
+       Size:
+      </label>
+<select id="size1">
+<option>
+        S
+       </option>
+<option>
+        M
+       </option>
+<option>
+        L
+       </option>
+</select>
+<label for="variety1">
+	Variety:
+	</label>
+<select id="variety1">
+  <option>Style A</option>
+  <option>Style B</option>
+  <option>Style C</option>
+</select>
+<label for="qty1">
+       Qty:
+      </label>
+<select id="qty1">
+<option>
+        1
+       </option>
+<option>
+        2
+       </option>
+<option>
+        3
+       </option>
+</select>
+<button onclick="addToCart(this)">
+       Add to Cart
+      </button>
+</div>
+</div>
 <div class="product-card">
 <img alt="Hoodie White" src="https://i.postimg.cc/FKL8XRT1/IMG-0599.jpg"/>
 <div class="product-info">
@@ -709,13 +765,6 @@
         L
        </option>
 </select>
-<label for="variety1">
-	Variety:
-	</label>
-<select id="variety1">
-  <option>Style A</option>
-  <option>Style B</option>
-</select>
 <label for="qty1">
        Qty:
       </label>
@@ -762,7 +811,53 @@
         L
        </option>
 </select>
-<label for="variety1">
+<label for="qty1">
+       Qty:
+      </label>
+<select id="qty1">
+<option>
+        1
+       </option>
+<option>
+        2
+       </option>
+<option>
+        3
+       </option>
+</select>
+<button onclick="addToCart(this)">
+       Add to Cart
+      </button>
+</div>
+</div>
+    <div class="product-card">
+<img alt="Hoodie Pink" id="hoodie9-img" src="https://i.postimg.cc/L6LGgw2W/IMG-0650.jpg"/>
+<div style="margin-top:10px; text-align:center;">
+<img onclick="switchImage('hoodie9-img', 'https://i.postimg.cc/L6LGgw2W/IMG-0650.jpg', this)" src="https://i.postimg.cc/L6LGgw2W/IMG-0650.jpg" style="width:40px;height:40px;margin:2px;cursor:pointer;border:2px solid transparent;"/>
+<img onclick="switchImage('hoodie9-img', 'https://i.postimg.cc/ZY11R4t3/IMG-0649.jpg', this)" src="https://i.postimg.cc/ZY11R4t3/IMG-0649.jpg" style="width:40px;height:40px;margin:2px;cursor:pointer;border:2px solid transparent;"/>   
+</div>
+<div class="product-info">
+<div class="product-title">
+       Pink Hoodie
+      </div>
+<div class="product-price">
+       RM59.00
+      </div>
+<label for="size1">
+       Size:
+      </label>
+<select id="size1">
+<option>
+        S
+       </option>
+<option>
+        M
+       </option>
+<option>
+        L
+       </option>
+</select>
+	<label for="variety1">
 	Variety:
 	</label>
 <select id="variety1">
@@ -788,7 +883,49 @@
       </button>
 </div>
 </div>
-   
+	<div class="product-card">
+<img alt="Hoodie White" src="https://i.postimg.cc/7PCFwbcw/IMG-0657.jpg"/>
+<div class="product-info">
+<div class="product-title">
+       White Hoodie
+      </div>
+<div class="product-price">
+       RM59.00
+      </div>
+<label for="size2">
+       Size:
+      </label>
+<select id="size2">
+<option>
+        S
+       </option>
+<option>
+        M
+       </option>
+<option>
+        L
+       </option>
+</select>
+
+<label for="qty2">
+       Qty:
+      </label>
+<select id="qty2">
+<option>
+        1
+       </option>
+<option>
+        2
+       </option>
+<option>
+        3
+       </option>
+</select>
+<button onclick="addToCart(this)">
+       Add to Cart
+      </button>
+</div>
+</div>
     <div class="product-card">
 <img alt="Hoodie White" src="https://i.postimg.cc/cHNSxPg0/IMG-0624.jpg"/>
 <div class="product-info">
@@ -816,6 +953,59 @@
        Qty:
       </label>
 <select id="qty2">
+<option>
+        1
+       </option>
+<option>
+        2
+       </option>
+<option>
+        3
+       </option>
+</select>
+<button onclick="addToCart(this)">
+       Add to Cart
+      </button>
+</div>
+</div>
+	 <div class="product-card">
+<img alt="Hoodie Pink" id="hoodie10-img" src="https://i.postimg.cc/0jJd3TV1/IMG-0654.jpg"/>
+<div style="margin-top:10px; text-align:center;">
+<img onclick="switchImage('hoodie10-img', 'https://i.postimg.cc/0jJd3TV1/IMG-0654.jpg', this)" src="https://i.postimg.cc/0jJd3TV1/IMG-0654.jpg" style="width:40px;height:40px;margin:2px;cursor:pointer;border:2px solid transparent;"/>
+<img onclick="switchImage('hoodie10-img', 'https://i.postimg.cc/dDPmK5fk/IMG-0653.jpg', this)" src="https://i.postimg.cc/dDPmK5fk/IMG-0653.jpg" style="width:40px;height:40px;margin:2px;cursor:pointer;border:2px solid transparent;"/>   
+</div>
+<div class="product-info">
+<div class="product-title">
+       Pink Hoodie
+      </div>
+<div class="product-price">
+       RM59.00
+      </div>
+<label for="size1">
+       Size:
+      </label>
+<select id="size1">
+<option>
+        S
+       </option>
+<option>
+        M
+       </option>
+<option>
+        L
+       </option>
+</select>
+	<label for="variety1">
+	Variety:
+	</label>
+<select id="variety1">
+  <option>Style A</option>
+  <option>Style B</option>
+</select>
+<label for="qty1">
+       Qty:
+      </label>
+<select id="qty1">
 <option>
         1
        </option>
@@ -928,7 +1118,59 @@
       </button>
 </div>
 </div>
-
+ <div class="product-card">
+<img alt="Hoodie Pink" id="hoodie10-img" src="https://i.postimg.cc/KvMJsMW3/IMG-0667.jpg"/>
+<div style="margin-top:10px; text-align:center;">
+<img onclick="switchImage('hoodie10-img', 'https://i.postimg.cc/KvMJsMW3/IMG-0667.jpg', this)" src="https://i.postimg.cc/KvMJsMW3/IMG-0667.jpg" style="width:40px;height:40px;margin:2px;cursor:pointer;border:2px solid transparent;"/>
+<img onclick="switchImage('hoodie10-img', 'https://i.postimg.cc/2yq2Yb8J/IMG-0668.jpg', this)" src="https://i.postimg.cc/2yq2Yb8J/IMG-0668.jpg" style="width:40px;height:40px;margin:2px;cursor:pointer;border:2px solid transparent;"/>   
+</div>
+<div class="product-info">
+<div class="product-title">
+       Pink Hoodie
+      </div>
+<div class="product-price">
+       RM59.00
+      </div>
+<label for="size1">
+       Size:
+      </label>
+<select id="size1">
+<option>
+        S
+       </option>
+<option>
+        M
+       </option>
+<option>
+        L
+       </option>
+</select>
+	<label for="variety1">
+	Variety:
+	</label>
+<select id="variety1">
+  <option>Style A</option>
+  <option>Style B</option>
+</select>
+<label for="qty1">
+       Qty:
+      </label>
+<select id="qty1">
+<option>
+        1
+       </option>
+<option>
+        2
+       </option>
+<option>
+        3
+       </option>
+</select>
+<button onclick="addToCart(this)">
+       Add to Cart
+      </button>
+</div>
+</div>
  <div class="product-card">
 <img alt="Hoodie White" src="https://i.postimg.cc/656BGsHQ/IMG-0628.jpg"/>
 <div class="product-info">
@@ -972,7 +1214,59 @@
       </button>
 </div>
 </div>
-
+ <div class="product-card">
+<img alt="Hoodie Pink" id="hoodie11-img" src="https://i.postimg.cc/131JxzxC/IMG-0671.jpg"/>
+<div style="margin-top:10px; text-align:center;">
+<img onclick="switchImage('hoodie11-img', 'https://i.postimg.cc/131JxzxC/IMG-0671.jpg', this)" src="https://i.postimg.cc/131JxzxC/IMG-0671.jpg" style="width:40px;height:40px;margin:2px;cursor:pointer;border:2px solid transparent;"/>
+<img onclick="switchImage('hoodie11-img', 'https://i.postimg.cc/0Nft01Bt/IMG-0672.jpg', this)" src="https://i.postimg.cc/0Nft01Bt/IMG-0672.jpg" style="width:40px;height:40px;margin:2px;cursor:pointer;border:2px solid transparent;"/>   
+</div>
+<div class="product-info">
+<div class="product-title">
+       Pink Hoodie
+      </div>
+<div class="product-price">
+       RM59.00
+      </div>
+<label for="size1">
+       Size:
+      </label>
+<select id="size1">
+<option>
+        S
+       </option>
+<option>
+        M
+       </option>
+<option>
+        L
+       </option>
+</select>
+	<label for="variety1">
+	Variety:
+	</label>
+<select id="variety1">
+  <option>Style A</option>
+  <option>Style B</option>
+</select>
+<label for="qty1">
+       Qty:
+      </label>
+<select id="qty1">
+<option>
+        1
+       </option>
+<option>
+        2
+       </option>
+<option>
+        3
+       </option>
+</select>
+<button onclick="addToCart(this)">
+       Add to Cart
+      </button>
+</div>
+</div>
     <div class="product-card">
 <img alt="Hoodie White" src="https://i.postimg.cc/zDCfgF8x/IMG-0642.jpg"/>
 <div class="product-info">
